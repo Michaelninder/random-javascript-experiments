@@ -34,12 +34,20 @@
         const timeDisplay = document.getElementById('timeDisplay');
         let time = [];
         timeDisplay.innerHTML = 'Loading';
+        
+        function noIdea(number) {
+            if(Number(number) < 10) {
+                number = "0" + String(number);
+            };
+
+            return number;
+        };
 
         function updateTime() {
             date = new Date();
-            time['h'] = date.getHours();
-            time['min'] = date.getMinutes();
-            time['sec'] = date.getSeconds();
+            time['h'] = noIdea(date.getHours());
+            time['min'] = noIdea(date.getMinutes());
+            time['sec'] = noIdea(date.getSeconds());
 
             //timeDisplay.innerHTML = "${time['h']} : ${time['min']} : ${time['sec']}";
             timeDisplay.innerHTML = `${time.h} : ${time.min} : ${time.sec}`;

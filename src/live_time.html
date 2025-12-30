@@ -5,12 +5,24 @@
     <title>Live Time display</title>
 </head>
 <body>
-    <div id="timeDisplay">asd</div>
+    <div id="timeDisplay">...</div>
 
     <script>
         const timeDisplay = document.getElementById('timeDisplay');
+        let time = [];
+        timeDisplay.innerHTML = 'Loading';
     
-        timeDisplay.innerHTML = "test";
+        function updateTime() {
+            date = new Date();
+            time['h'] = date.getHours();
+            time['min'] = date.getMinutes();
+            time['sec'] = date.getSeconds();
+
+            //timeDisplay.innerHTML = "${time['h']} : ${time['min']} : ${time['sec']}";
+            timeDisplay.innerHTML = `${time.h} : ${time.min} : ${time.sec}`;
+        }
+
+        updateTime();
     </script>
 </body>
 </html>

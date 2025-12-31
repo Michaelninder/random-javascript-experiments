@@ -3,6 +3,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>isEven</title>
+
+    <style>
+        body {
+            min-height: 100vh;
+            display:flex;
+            background: slategray;
+            color: beige;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <form id="numberForm">
@@ -11,15 +24,16 @@
         <p id="numberOutput"></p>
     </form>
     <script>
-        const numberInput = document.getElementById('numberInout');
+        const numberInput = document.getElementById('numberInput');
         //let number = numberInput.value;
         //let number = document.getElementById('numberInout').value;
         const numberOutput = document.getElementById('numberOutput');
         const numberForm = document.getElementById('numberForm');
 
-        function updateNumberOutput() {
+        function updateNumberOutput(event) {
+            event.preventDefault();
             let number = numberInput.value;
-            numberOutput.innerHTML = `The number ${number} is ${number % 2 === 0}`;
+            numberOutput.innerHTML = `The number ${number} is ${number % 2 === 0 ? 'Even' : 'not Even'}`;
         }
 
         numberForm.addEventListener('submit', updateNumberOutput);

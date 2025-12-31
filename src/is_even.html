@@ -5,13 +5,24 @@
     <title>isEven</title>
 </head>
 <body>
-    <form action="">
+    <form id="numberForm">
         <input type="number" name="number" id="numberInput">
         <input type="submit" value="Enter">
         <p id="numberOutput"></p>
     </form>
     <script>
+        const numberInput = document.getElementById('numberInout');
+        //let number = numberInput.value;
+        //let number = document.getElementById('numberInout').value;
+        const numberOutput = document.getElementById('numberOutput');
+        const numberForm = document.getElementById('numberForm');
 
+        function updateNumberOutput() {
+            let number = numberInput.value;
+            numberOutput.innerHTML = `The number ${number} is ${number % 2 === 0}`;
+        }
+
+        numberForm.addEventListener('submit', updateNumberOutput);
     </script>
 </body>
 </html>

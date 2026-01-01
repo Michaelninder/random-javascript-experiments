@@ -23,9 +23,22 @@
         const todoForm = document.getElementById('todoForm');
         const todolist = document.getElementById('todolist');
 
-        let todos = JSON.parse(localStorage.getItem('todos')) || [];
-        localStorage.setItem('todos', todos); // I am simply STUPID!
+        let todos = loadTodos();
 
+        function loadTodos() {
+            const data = localStorage.getItem('todos');
+            return data ? JSON.parse(data) : [];
+        }
+
+        function storeTodos() {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+
+        function toggleTodo(index) {
+            todos[index].done = !todos[index].done;
+            storeTodos();
+            renderTodos();
+        }
         function toggleTodo(index) {
             todos[index].done = !todos[index].done;
 
@@ -33,33 +46,42 @@
         };
 
         function renderTodos() {
-            todos.forEach(element => {
-                content += `${element.content}  <input type="checkbox" name="" id="" value="${element.done}">`
+            let html = '';
+            todos.forEach((todo, index) => {
+                html += `
+                    <div>
+                        <input type="checkbox" ${todo.done ? 'checked' : ''} onchange="toggleTodo(${index})">
+                        <span class="todo ${todo.done ? 'done' : ''}">${todo.content}</span>
+                    </div>
+                `;
             });
-
-            todolist.innerHTML = content;
+            todolist.innerHTML = html;
         }
 
-        function createTodo() {
-            const todo = newTodo.value;
+        function createTodo(e) {
+            e.preventDefault();
 
-            if(todo === '') {
+            const content = todoInput.value.trim();
+
+            if(!content) {
                 return;
             }
 
             todos.push({
-                content: todo,
+                content: content,
                 done: false,
             });
             
             localStorage.setItem('todos', todos);
 
+            todoInput.value = '';
+            storeTodos();
             renderTodos();
         }
 
-
-        //addTodo.addEventListener('click')
-        todoForm.addEventListener('submit', createTodo)
+        //addTodo.addEventListener('click');
+        todoForm.addEventListener('submit', createTodo);
+        renderTodos();
     </script>
 </body>
 </html>

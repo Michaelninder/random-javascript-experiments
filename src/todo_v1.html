@@ -3,6 +3,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo v1</title>
+    <style>
+        body {
+            min-height: 100vh;
+            background: slategray;
+            color: whitesmoke;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            margin-inline-start: 4vw;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: beige;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        form {
+            position: fixed;
+            background-color: black;
+            bottom: 0;
+            padding: 12px;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid lightgray;
+        }
+    </style>
 </head>
 <body>
 

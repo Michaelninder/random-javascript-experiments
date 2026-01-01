@@ -18,13 +18,21 @@
 
     </div>
     <script>
-        let todos = localStorage.getItem('todos') ?? [];
         const newTodo = document.getElementById('todoInput');
         const addTodo = document.getElementById('todoSubmmit');
         const todoForm = document.getElementById('todoForm');
         const todolist = document.getElementById('todolist');
 
-        function updateTodos() {
+        let todos = JSON.parse(localStorage.getItem('todos')) || [];
+        localStorage.setItem('todos', todos); // I am simply STUPID!
+
+        function toggleTodo(index) {
+            todos[index].done = !todos[index].done;
+
+            localStorage.setItem('todos', todos);
+        };
+
+        function renderTodos() {
             todos.forEach(element => {
                 content += `${element.content}  <input type="checkbox" name="" id="" value="${element.done}">`
             });
@@ -43,8 +51,10 @@
                 content: todo,
                 done: false,
             });
+            
+            localStorage.setItem('todos', todos);
 
-            updateTodos();
+            renderTodos();
         }
 
 

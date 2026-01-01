@@ -9,15 +9,32 @@
     <div>
         <h1>todo</h1>
 
-        <form action="" class="add-todo-form">
+        <form action="" class="add-todo-form" id="todoForm">
             <input type="text" name="todo_content" id="todoInput">
-            <input type="submit" value="Add" ind="todoSubmmit">
+            <input type="submit" value="Add" id="todoSubmmit">
         </form>
     </div>
     <script>
         let todos = localStorage.getItem('todos') ?? [];
         const newTodo = document.getElementById('todoInput');
         const addTodo = document.getElementById('todoSubmmit');
+        const todoForm = document.getElementById('todoForm');
+
+        function createTodo() {
+            const todo = newTodo.value;
+
+            if(todo === '') {
+                return;
+            }
+
+            todos.push({
+                content: todo,
+                value: false,
+            });
+        }
+
+        //addTodo.addEventListener('click')
+        todoForm.addEventListener('submit', createTodo)
     </script>
 </body>
 </html>

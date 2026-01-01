@@ -5,6 +5,19 @@
     <title>ToDo v1</title>
 </head>
 <body>
-    
+
+    <div>
+        <h1>todo</h1>
+
+        <form action="" class="add-todo-form">
+            <input type="text" name="todo_content" id="todoInput">
+            <input type="submit" value="Add" ind="todoSubmmit">
+        </form>
+    </div>
+    <script>
+        let todos = localStorage.getItem('todos') ?? [];
+        const newTodo = document.getElementById('todoInput');
+        const addTodo = document.getElementById('todoSubmmit');
+    </script>
 </body>
 </html>

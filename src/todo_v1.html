@@ -9,16 +9,28 @@
     <div>
         <h1>todo</h1>
 
-        <form action="" class="add-todo-form" id="todoForm">
+        <div id="todolist"></div>
+
+        <form class="add-todo-form" id="todoForm">
             <input type="text" name="todo_content" id="todoInput">
             <input type="submit" value="Add" id="todoSubmmit">
         </form>
+
     </div>
     <script>
         let todos = localStorage.getItem('todos') ?? [];
         const newTodo = document.getElementById('todoInput');
         const addTodo = document.getElementById('todoSubmmit');
         const todoForm = document.getElementById('todoForm');
+        const todolist = document.getElementById('todolist');
+
+        function updateTodos() {
+            todos.forEach(element => {
+                content += `${element.content}  <input type="checkbox" name="" id="" value="${element.done}">`
+            });
+
+            todolist.innerHTML = content;
+        }
 
         function createTodo() {
             const todo = newTodo.value;
@@ -29,9 +41,12 @@
 
             todos.push({
                 content: todo,
-                value: false,
+                done: false,
             });
+
+            updateTodos();
         }
+
 
         //addTodo.addEventListener('click')
         todoForm.addEventListener('submit', createTodo)
